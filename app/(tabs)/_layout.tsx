@@ -1,55 +1,76 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs } from 'expo-router';
-import { Pressable, useColorScheme } from 'react-native';
-
+import { View, Text } from 'react-native';
+import React from 'react';
+import { Tabs } from 'expo-router';
 import Colors from '../../constants/Colors';
+import { MaterialCommunityIcons, FontAwesome5, Ionicons, Entypo } from '@expo/vector-icons';
 
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
-}
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+const Layout = () => {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: Colors.primary,
+        tabBarLabelStyle: {
+          fontFamily: 'mon-sb'
+        }
       }}>
+
+      {/* Explore Tab */}
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={Colors[colorScheme ?? 'light'].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
+          tabBarLabel: 'Explore',
+          title: 'Explore',
+          tabBarIcon: ({ color, size }) =>
+            <Ionicons name="search" color={color} size={size} />
         }}
       />
+
+      {/* Teams Tab */}
       <Tabs.Screen
-        name="two"
+        name="teams"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarLabel: 'Teams',
+          title: 'Teams',
+          tabBarIcon: ({ color, size }) =>
+            <FontAwesome5 name="users" color={color} size={size} />
         }}
       />
+
+      {/* Schedule Tab */}
+      <Tabs.Screen
+        name="schedule"
+        options={{
+          tabBarLabel: 'Schedule',
+          title: 'Schedule',
+          tabBarIcon: ({ color, size }) =>
+            <Entypo name="calendar" color={color} size={size} />
+        }}
+      />
+
+      {/* Messages Tab */}
+      <Tabs.Screen
+        name="messages"
+        options={{
+          tabBarLabel: 'Messages',
+          title: 'Messages',
+          tabBarIcon: ({ color, size }) =>
+            <MaterialCommunityIcons name="message-outline" color={color} size={size} />
+        }}
+      />
+
+      {/* Profile Tab */}
+      <Tabs.Screen
+        name="profile"
+        options={{
+          tabBarLabel: 'Profile',
+          title: 'Profile',
+          tabBarIcon: ({ color, size }) =>
+            <Ionicons name="person-circle" color={color} size={size} />
+        }}
+      />
+
     </Tabs>
-  );
+  )
 }
+
+export default Layout;
