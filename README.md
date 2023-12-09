@@ -17,7 +17,7 @@ This project uses React Native Expo. To set up your React Native Expo environmen
 ### Installation
 1. Clone the repository:
    ```
-   git clone https://github.com/your_username_/BasketBuddy.git
+   git clone https://github.com/iramm21/BasketBuddy.git
    ```
 
 2. Navigate to the project directory:
